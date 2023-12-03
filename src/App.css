@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 3rem;
   font-size: 18px;
 }
 
@@ -48,4 +50,24 @@ td > input {
 
 .highlight {
   background-color: rgba(28, 28, 28, 0.3);
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  font-size: 25px;
+}
+
+.pagination > div {
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pagination__selected {
+  background-color: rgba(28, 28, 28, 0.3);
+}
+
+.pagination_disabled {
+  opacity: 0;
 }

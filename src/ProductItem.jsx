@@ -43,12 +43,17 @@ const ProductItem = ({
           type="checkbox"
           onClick={() => addToDeleteList()}
           checked={usersToDelete.includes(user.id)}
+          onChange={addToDeleteList}
         />
       </td>
       <td>
         {
           <input
             type="text"
+            style={{
+              backgroundColor:
+                usersToDelete.includes(user.id) && "rgba(28, 28, 28, 0.01)",
+            }}
             className={isEditable && "edit_user"}
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
