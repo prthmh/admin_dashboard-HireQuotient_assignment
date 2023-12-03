@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
+import { FaSearch } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 
 const ProductList = () => {
   const [users, setUsers] = useState([]);
   const [usersToDelete, setUsersToDelete] = useState([]);
   const [page, setPage] = useState(1);
+  const [emptyDeleteList, setEmptyDeleteList] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchUsers = async () => {
     const response = await fetch(
@@ -23,6 +27,7 @@ const ProductList = () => {
       (user) => !usersToDelete.includes(user.id)
     );
     setUsers(newUserList);
+    setEmptyDeleteList(true);
   };
 
   const selectPageHandler = (selectedPage) => {
@@ -35,15 +40,67 @@ const ProductList = () => {
     }
   };
 
+  const addAllUsersToDeleteList = (e) => {
+    if (!e.target.checked) {
+      setEmptyDeleteList(true);
+      setUsersToDelete([]);
+    } else {
+      setEmptyDeleteList(false);
+      const newDeleteUsersList = [...users]
+        .slice(page * 10 - 10, page * 10)
+        .map((user) => user.id);
+      setUsersToDelete(newDeleteUsersList);
+    }
+  };
+
+  const onSearch = () => {
+    const newList = users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(searchInput) ||
+        user.email.toLowerCase().includes(searchInput)
+    );
+    setUsers(newList);
+  };
+
+  const onResetSearch = () => {
+    fetchUsers();
+    setSearchInput("");
+  };
+
   return (
     <>
-      <button onClick={deleteSelectedUsers}>Delete selected users</button>
+      <div className="header">
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
+          />
+          <span className="search_logo" onClick={onSearch}>
+            <FaSearch />
+          </span>
+          <span className="reset" onClick={onResetSearch}>
+            Reset
+          </span>
+        </div>
+        <button
+          onClick={deleteSelectedUsers}
+          className="delete_selsected_users"
+        >
+          <FaTrashCan /> Delete selected users
+        </button>
+      </div>
       <div className="user_list">
         <table>
           <thead>
             <tr>
               <th>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onChange={(e) => addAllUsersToDeleteList(e)}
+                  checked={!emptyDeleteList}
+                />
               </th>
               <th>Name</th>
               <th>Email</th>

@@ -54,6 +54,7 @@ td > input {
 
 .pagination {
   display: flex;
+  align-items: center;
   gap: 10px;
   font-size: 25px;
 }
@@ -70,4 +71,40 @@ td > input {
 
 .pagination_disabled {
   opacity: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin-top: 1rem;
+}
+.search > input {
+  border: 2px solid rgb(28, 28, 28);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 5px;
+}
+
+.search_logo,
+.reset {
+  background-color: #192a51;
+  padding: 8px;
+  color: white;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.delete_selsected_users {
+  background-color: red;
+  color: white;
+  font-family: inherit;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
 }
