@@ -1,0 +1,51 @@
+.user_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+table {
+  text-align: left;
+  padding: 1rem 10rem;
+  width: 100%;
+}
+th,
+td {
+  padding: 10px;
+}
+
+.action_btns {
+  display: flex;
+  gap: 20px;
+  color: #262626;
+}
+
+.action_btns > button {
+  background: none;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.delete,
+.edit {
+  cursor: pointer;
+}
+
+td > input {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+}
+
+.edit_user {
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.highlight {
+  background-color: rgba(28, 28, 28, 0.3);
+}
